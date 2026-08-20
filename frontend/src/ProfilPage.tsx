@@ -1,10 +1,19 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Bot, MessageCircle, BookOpen, Radio, Newspaper, Settings, LogOut, Menu, X, User } from 'lucide-react';
+import { Bot, MessageCircle, BookOpen, Radio, Newspaper, Settings, LogOut, Menu, X, User, Mail, Phone, Calendar } from 'lucide-react';
 
 const ProfilPage: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
+
+  // Données fictives pour l'instant. On branchera au backend après
+  const userData = {
+    photo: '',
+    nom: 'DUPONT',
+    prenom: 'Aladin',
+    email: 'aladin@example.com',
+    numero: '+226 70 00 00 00',
+  }
 
   const menuItems = [
     { name: 'ALADIN AI', icon: <Bot size={20} />, path: '/ai' },
@@ -17,7 +26,7 @@ const ProfilPage: React.FC = () => {
   ];
 
   return (
-    <div style={{ backgroundColor: '#0B0B12', color: 'white', height: '100vh', width: '100vw', position: 'relative' }}>
+    <div style={{ backgroundColor: '#0B0B12', color: 'white', minHeight: '100vh', width: '100vw', position: 'relative', paddingBottom: '40px' }}>
       
       {/* HAMBURGER */}
       <button onClick={() => setMenuOpen(!menuOpen)} style={{ position: 'absolute', top: '20px', right: '20px', background: 'none', border: 'none', color: 'white', cursor: 'pointer', zIndex: 10 }}>
@@ -26,14 +35,31 @@ const ProfilPage: React.FC = () => {
 
       {/* CONTENU PROFIL */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: '80px' }}>
-        <User size={80} style={{ background: '#1A1A24', padding: '20px', borderRadius: '50%' }} />
-        <h1 style={{ fontSize: '1.8rem', margin: '20px 0 5px 0' }}>Bienvenue</h1>
-        <p style={{ color: '#888', fontSize: '1rem' }}>ton-email@example.com</p>
+        {/* PHOTO */}
+        <div style={{ width: '100px', height: '100px', borderRadius: '50%', background: '#1A1A24', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px' }}>
+          <User size={50} color='#888' />
+        </div>
+
+        <h1 style={{ fontSize: '1.5rem', margin: '0 0 30px 0' }}>INFORMATIONS</h1>
         
-        <div style={{ marginTop: '40px', width: '90%', maxWidth: '400px' }}>
-          <div style={{ background: '#1A1A24', padding: '15px', borderRadius: '12px', marginBottom: '10px' }}>Mes Statistiques</div>
-          <div style={{ background: '#1A1A24', padding: '15px', borderRadius: '12px', marginBottom: '10px' }}>Historique</div>
-          <div style={{ background: '#1A1A24', padding: '15px', borderRadius: '12px' }}>Abonnement</div>
+        {/* INFOS */}
+        <div style={{ width: '90%', maxWidth: '400px' }}>
+          <div style={{ background: '#1A1A24', padding: '15px', borderRadius: '12px', marginBottom: '12px', display: 'flex', justifyContent: 'space-between' }}>
+            <span style={{ color: '#888' }}>NOM</span>
+            <span style={{ fontWeight: 'bold' }}>{userData.nom}</span>
+          </div>
+          <div style={{ background: '#1A1A24', padding: '15px', borderRadius: '12px', marginBottom: '12px', display: 'flex', justifyContent: 'space-between' }}>
+            <span style={{ color: '#888' }}>PRÉNOM</span>
+            <span style={{ fontWeight: 'bold' }}>{userData.prenom}</span>
+          </div>
+          <div style={{ background: '#1A1A24', padding: '15px', borderRadius: '12px', marginBottom: '12px', display: 'flex', justifyContent: 'space-between' }}>
+            <span style={{ color: '#888' }}>EMAIL</span>
+            <span style={{ fontWeight: 'bold', fontSize: '0.9rem' }}>{userData.email}</span>
+          </div>
+          <div style={{ background: '#1A1A24', padding: '15px', borderRadius: '12px', display: 'flex', justifyContent: 'space-between' }}>
+            <span style={{ color: '#888' }}>NUMÉRO</span>
+            <span style={{ fontWeight: 'bold' }}>{userData.numero}</span>
+          </div>
         </div>
       </div>
 
